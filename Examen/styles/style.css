@@ -1,0 +1,106 @@
+* {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
+html {
+  background-color: snow;
+}
+
+svg {
+  background-color: white;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+.sub-title {
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 0;
+}
+
+.sub-title > p {
+  margin-top: 0;
+}
+
+#menu {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+body {
+  margin: 0px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#sidebar {
+  height: 79%; /* Full-height: remove this if you want "auto" height */
+  width: 30%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 5%; /* Stay at the top */
+  right: 1%;
+  background-color: rgba(0, 0, 0, 0.85); /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+h2 {
+  margin-bottom: 3;
+}
+
+h3, h4 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 3;
+}
+
+p {
+  color: white;
+}
+
+#timeline {
+  width: 90%;
+  bottom: 5%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.85);
+  left: 9%;
+  position: fixed;
+}
+
+button {
+  height: 70%;
+  margin-top: 10%;
+  border-radius: 100%;
+  font-size: 2em;
+  width: 69px;
+  border-style: solid;
+  outline:none;
+}
+
+#controls {
+  width: 8%;
+  bottom: 5%;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.85);
+  left: 0.5%;
+  position: fixed;
+}
+
+.histoAxis path{
+  stroke: white;
+}
+
+.histoAxis line{
+  stroke: white;
+}
+
+.histoAxis text{
+  color: white;
+}

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto:wght@300;900&family=Yanone+Kaffeesatz&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/informe.css" />
+  </head>
+  <body>
+    <div class="content">
+      <h1>Examen</h1>
+      <p class="subtitle">Por Vicente Vega</p>
+      <br />
+      <p class="button">
+        <a href="index.html">Ir a la visualización</a>
+      </p>
+
+      <p class="explanation">
+        <span>Disclaimer:</span> Me motivé mucho programando el Examen y me
+        quedó muy poco tiempo para el informe :(, mi idea era escribir muchas
+        más tareas.
+      </p>
+      <hr />
+      <br />
+      <h2>Primer nivel: Caracterización de dominio</h2>
+      <!-- <p class="explanation">
+        En base al problema de visualización entregado,
+        se pudo abstraer las siguientes tareas principales.
+      </p> -->
+      <br />
+
+      <p class="explanation">
+        Esta visualización presenta datos relacionados a la banda inglesa Arctic
+        Monkeys. Específicamente muestra datos relacionados a los conciertos que
+        la banda realiza alrededor del mundo. Los datos provienen de tres
+        distintos datasets: clean_setlist.js, venue.json y world.geo.json. El
+        primer dataset contiene la información de todos los conciertos de Actic
+        Monkeys. Lo creé en base a consultas a la API de setlist.fm, una página
+        que posee información de todos los conciertos y shows musicales del
+        mundo. El segundo dataset contiene las coordenadas de todas las ciudades
+        donde Arctic Monkeys ha tocado, y lo obtuve tomando el nombre de las
+        ciudades en clean_setlist.js y buscando sus coordenadas con la librería
+        de Python llamada Geocoder. El último dataset corresponde a un GeoJSON y
+        posee la información necesaria para graficar un mapa del mundo con d3.
+      </p>
+      <p class="explanation">
+        Esta herramienta fue creada pensando en ser usada por fans de Arctic
+        Monkeys, con el fin de entretenerse buscando y descubriendo información
+        de la banda.
+      </p>
+      <br />
+      <hr />
+      <br />
+      <h2>Segundo nivel: Abstracción de datos y tareas</h2>
+      <h3 class="tarea">Abstracción de tareas</h3>
+      <p class="explanation">
+        <span>Tarea 1:</span> Localizar distribución de conciertos en el tiempo
+        en una ciudad en especifico
+      </p>
+      <p class="explanation">
+        <span>Tarea 2:</span> Descubrir distribución de canciones más tocadas en
+        la historia de Arctic Monkeys
+      </p>
+      <p class="explanation">
+        <span>Tarea 3:</span>: Comparar cantidad de visitas(valor individual) de
+        Arctic Monkeys entre distintas ciudades.
+      </p>
+      <p class="explanation">
+        <span>Tarea 4:</span> Sondear características de conciertos tocados en una ciudad en
+        específico.
+      </p>
+      <br />
+      <h3 class="tarea">Abstracción de datos</h3>
+      <br />
+      <div class="contenedor-attr">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Descripción</th>
+              <th>Tipo</th>
+              <th>Categórico u Ordenado</th>
+              <th>Ordinal o Cuantitativo</th>
+              <th>Secuencial o Divergente</th>
+              <th>Cíclico o No Cíclico</th>
+              <th>Llave o Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>venue</td>
+              <td>Lugar del concierto</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>city</td>
+              <td>Ciudad de venue</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>id de ciudad</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Llave</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>nombre de ciudad</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>coords</td>
+              <td>Coordenadas de venue</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>long</td>
+              <td>Longitud de venue</td>
+              <td>Posición</td>
+              <td>Ordenado</td>
+              <td>Cuantitativo</td>
+              <td>Divergente</td>
+              <td>Cíclico</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>lat</td>
+              <td>Latitud de venue</td>
+              <td>Posición</td>
+              <td>Ordenado</td>
+              <td>Cuantitativo</td>
+              <td>Divergente</td>
+              <td>Cíclico</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>country</td>
+              <td>País de venue</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>Abreviación del país</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>nombre del pais</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>id del pais</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Llave</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>nombre del estadio</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>tour</td>
+              <td>Representa el tour</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>Nombre del tour</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>set</td>
+              <td>Lista de canciones tocadas en el concierto</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>song</td>
+              <td>Representa la canción</td>
+              <td>Item</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>Nombre de la canción</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>info</td>
+              <td>Información extra del concierto</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Valor</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>Id del concierto</td>
+              <td>Atributo</td>
+              <td>Categórico</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>Llave</td>
+            </tr>
+            <tr>
+              <td>eventDate</td>
+              <td>Fecha del concierto</td>
+              <td>Atributo</td>
+              <td>Ordenado</td>
+              <td>Cuantitativo</td>
+              <td>Secuencial</td>
+              <td>No Cíclico</td>
+              <td>Valor</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br class="break" />
+      <hr />
+      <br />
+      <h2>Tercer nivel: Codificación visual y de interacción</h2>
+      <br />
+      <h3 class="tarea">
+        Localizar distribución de conciertos en el tiempo en una ciudad en
+        especifico
+      </h3>
+      <p class="explanation">
+        Para esta tarea los idioms principales son un mapa y una línea del
+        tiempo.
+      </p>
+      <p class="explanation">
+        El mapa posee las ciudades representadas con un circulo (marca). De
+        decidió usar el circulo como marca ya que el radio de este era un buen
+        canal de magnitud para representar cantidad de visitas en otras tareas.
+      </p>
+      <p class="explanation">
+        Los círculos utilizan el radio como canal de magnitud que representa
+        cuantas veces la banda ha tocado en dicha ciudad. Este canal es útil en
+        la tarea 3 pero lo explico ahora para no confundir.
+      </p>
+      <p class="explanation">
+        Los círculos utilizan la posición en el mapa como canal de identidad
+        para diferenciar la ciudad de otras.
+      </p>
+      <p class="explanation">
+        El circulo es de color rojo para poder tener suficiente contraste con el
+        mapa gris y el fondo blanco.
+      </p>
+      <p class="explanation">
+        La línea del tiempo está compuesta por una línea horizontal blanca donde
+        se posicionan los eventos. También contiene líneas verticales blancas
+        que marcan el tiempo entre años y un texto bajo cada una que indica el
+        año.
+      </p>
+      <p class="explanation">
+        La línea del tiempo tiene un fondo negro para diferenciarla del fondo
+        blanco del mapa y así mantener consistencia con los colores utilizados.
+      </p>
+      <p class="explanation">
+        Los conciertos en la línea del tiempo se representan con una línea
+        (marca) roja vertical. El color de la línea se eligió considerando que
+        sería más intuitivo para el usuario ya que en el mapa son del mismo
+        color. De esta forma se busca cumplir también con el principio de
+        expresividad.
+      </p>
+      <p class="explanation">
+        Se utiliza como canal de identidad la posición del concierto en la línea
+        del tiempo. Esto permite al usuario comprender distancias en el tiempo
+        de manera intuitiva.
+      </p>
+      <p class="explanation">
+        Para cumplir con la tarea se utilizó como idiom de interacción la
+        selección de la ciudad. Cuando el cursor pasa por encima del circulo que
+        representa la ciudad, este cambia de color a amarillo al igual que todas
+        las líneas en la línea del tiempo que pertenecen a conciertos en la
+        ciudad seleccionada. De decidió usar el hover para esto ya que requiere
+        menos acciones de parte del usuario.
+      </p>
+      <p class="explanation">
+        Además, al hacer click se tiene acceso a los detalles de los conciertos
+        en esa ciudad.
+      </p>
+      <h3 class="tarea">
+        Descubrir distribución de canciones más tocadas en la historia de Arctic
+        Monkeys
+      </h3>
+      <p class="explanation">
+        Para esta tarea se utilizó como idiom un gráfico de barras donde cada
+        barra representa una canción.
+      </p>
+      <p class="explanation">
+        El eje horizontal representa la cantidad de veces que una canción fue
+        tocada y el vertical representa la posición de la canción al ordenarlas
+        por cantidad de reproducciones.
+      </p>
+      <p class="explanation">
+        Siendo más específico, una canción es representada por un rectángulo
+        cuyo largo es un canal de magnitud que representa las veces que fue
+        tocada una canción.
+      </p>
+      <p class="explanation">
+        Además, sobre la barra se encuentra el nombre de la canción como canal
+        de identidad, pero también cumpliendo el mismo rol se encuentra el color
+        de la barra. El color de la barra viola el principio de ink ratio porque
+        la canción se identifica fácilmente con su nombre, sin embargo, la
+        intención del color nace de otra parte de la visualización que es una
+        reproducción de la historia de Arctic Monkeys donde las barras se
+        ajustan durante el tiempo y el color era necesario para identificar
+        cuando había un cambio en las posiciones.
+      </p>
+      <p class="explanation">
+        Por último, al final de cada barra se encuentra el numero de veces que
+        fue tocada la canción facilitar el detalle al usuario.
+      </p>
+
+      <h3 class="tarea">
+        Comparar cantidad de visitas(valor individual) de Arctic Monkeys entre
+        distintas ciudades.
+      </h3>
+      <p class="explanation">
+        El idiom utilizado consiste en el mapa y las ciudades en el.
+      </p>
+      <p class="explanation">
+        Como se mencionó anteriormente, la ciudad es representada por un círculo
+        donde la posición en el mapa representa su ubicación geográfica y su
+        tamaño representa la cantidad de veces que la banda toco en dicha
+        ciudad. Se utiliza el radio del circulo como canal de magnitud para ser
+        consistente con el principio de expresividad, al ser este un atributo
+        ordenado.
+      </p>
+      <p class="explanation">
+        Se utiliza el idiom de interacción de selección para conocer el nombre
+        de la ciudad y de los lugares donde tocaron junto con la fecha al hacer
+        click sobre el circulo rojo. Estos datos se ubican en una barra lateral
+        a la derecha. El color de la barra es un negro semitransparente para
+        poder ver la forme del mapa una vez que se esconde detrás de la barra.
+      </p>
+      <h3 class="tarea">
+        Sondear características de conciertos tocados en una ciudad en
+        específico.
+      </h3>
+      <p class="explanation">
+        El idiom utilizado consiste en el mapa, las ciudades en el y una barra
+        lateral. Elementos mencionados y justificados anteriormente.
+      </p>
+      <p class="explanation">
+        Para cumplir con la tarea se añadió la navegación como idiom de
+        interacción. Al hacer click sobre uno de los conciertos en el mapa, se
+        muestra el nombre del lugar, la fecha, el tour si pertenece a alguno e
+        información extra si existe.
+      </p>
+      <p class="explanation">
+        Además, se muestra una lista de las canciones tocadas por la banda en
+        dicho concierto. Las canciones están en orden cronológico y se utiliza
+        el hover como idiom de interacción, que resalta la canción seleccionada
+        cambiándole el fondo a rojo. Se define el color rojo para mantener
+        consistencia con el resto de los colores en la visualización.
+      </p>
+      <p class="explanation">
+        Por último, como parte de la navegación se añade un botón para
+        retroceder en la esquina superior izquierda de la barra. Esto facilita
+        la interacción permitiendo al usuario volver a elegir otros conciertos
+        de la misma ciudad sin tener que localizarla de nuevo.
+      </p>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+  </body>
+</html>
